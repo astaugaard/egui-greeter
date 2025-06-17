@@ -44,7 +44,7 @@ impl Handle {
     where
         F: FnOnce(&mut Handle) -> Result<()>,
     {
-        let mut handle = run(user)?;
+        let mut handle = run(user).with_context(|| "while starting background thread")?;
 
         match f(&mut handle) {
             Ok(()) => {}
