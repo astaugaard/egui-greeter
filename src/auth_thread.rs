@@ -146,12 +146,22 @@ async fn run_authflow(
                     }
                 }
 
-                greetd_ipc::Request::CancelSession.write_to(s).await?;
+                let socket = env::var("GREETD_SOCK").unwrap();
+
+                *s = UnixStream::connect(socket).await?;
+
                 greetd_ipc::Request::CreateSession {
-                    username: user.clone(),
+                    username: user.to_string(),
                 }
                 .write_to(s)
                 .await?;
+
+                // greetd_ipc::Request::CancelSession.write_to(s).await?;
+                // greetd_ipc::Request::CreateSession {
+                //     username: user.clone(),
+                // }
+                // .write_to(s)
+                // .await?;
 
                 // if let Some(cur) = current_type {
                 //     responce.send(Responce::GetInput(cur)).await?;
