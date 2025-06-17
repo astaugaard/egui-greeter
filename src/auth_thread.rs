@@ -146,29 +146,36 @@ async fn run_authflow(
                     }
                 }
 
-                if let Some(cur) = current_type {
-                    responce.send(Responce::GetInput(cur)).await?;
-
-                    let command = commands
-                        .recv()
-                        .await
-                        .with_context(|| "should get a responce".to_string())?;
-
-                    match command {
-                        Command::Quit => {
-                            break;
-                        }
-                        Command::Entered(str) => {
-                            greetd_ipc::Request::PostAuthMessageResponse {
-                                response: Some(str),
-                            }
-                            .write_to(s)
-                            .await?;
-                        }
-                        Command::Session(_) => Err(anyhow!("don't need session yet"))?,
-                        Command::Next => Err(anyhow!("need a password"))?,
-                    }
+                greetd_ipc::Request::CancelSession.write_to(s).await?;
+                greetd_ipc::Request::CreateSession {
+                    username: user.clone(),
                 }
+                .write_to(s)
+                .await?;
+
+                // if let Some(cur) = current_type {
+                //     responce.send(Responce::GetInput(cur)).await?;
+
+                //     let command = commands
+                //         .recv()
+                //         .await
+                //         .with_context(|| "should get a responce".to_string())?;
+
+                //     match command {
+                //         Command::Quit => {
+                //             break;
+                //         }
+                //         Command::Entered(str) => {
+                //             greetd_ipc::Request::PostAuthMessageResponse {
+                //                 response: Some(str),
+                //             }
+                //             .write_to(s)
+                //             .await?;
+                //         }
+                //         Command::Session(_) => Err(anyhow!("don't need session yet"))?,
+                //         Command::Next => Err(anyhow!("need a password"))?,
+                //     }
+                // }
             }
             greetd_ipc::Response::AuthMessage {
                 auth_message_type,
