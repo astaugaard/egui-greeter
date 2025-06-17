@@ -29,24 +29,6 @@
 
           src = "${greetd-stub}";
 
-          # buildInputs = with pkgs; [
-          #   cairo
-          #   gtk4
-          #   atk
-          #   glib
-          #   gobject-introspection
-          #   pango
-          #   gdk-pixbuf
-          #   graphene
-          #   gtk4-layer-shell
-          # ]; // missing some dependencies but one of the would require an actual fingerprint scanner which I don't have
-
-          # nativeBuildInputs = with pkgs; [
-          #   pkg-config
-          # ];
-
-          # buildFeatures = [ "fingerprint" ];
-
           cargoLock = {
             lockFile = "${greetd-stub}/Cargo.lock";
           };

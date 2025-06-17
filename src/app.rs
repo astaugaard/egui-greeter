@@ -57,7 +57,7 @@ impl<'a> DisplayManager<'a> {
         ctx.add_font(FontInsert::new(
             "FiraCode",
             egui::FontData::from_static(include_bytes!(
-                "../nerd-fonts/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf"
+                "../nerd-fonts/FiraCodeNerdFontMono-Regular.ttf"
             )),
             vec![
                 InsertFontFamily {
