@@ -1010,7 +1010,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "egui-display-manager"
+name = "egui-greeter"
 version = "0.1.0"
 dependencies = [
  "anyhow",
