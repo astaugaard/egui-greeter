@@ -57,7 +57,7 @@ pub fn basic_center_input(
                 }
             }
             InputType::Password => {
-                text_edit_frame(ui, |ui| {
+                let enter = text_edit_frame(ui, |ui| {
                     ui.add(
                         TextEdit::singleline(&mut state.input)
                             .password(true)
@@ -65,8 +65,12 @@ pub fn basic_center_input(
                             .desired_width(200.0)
                             .frame(false),
                     )
-                });
-                if fancy_button(ui, "submit").clicked() {
+                    .lost_focus()
+                })
+                .inner
+                    || fancy_button(ui, "submit").clicked();
+
+                if enter {
                     state.input_type = None;
                     handle.send_command(auth_thread::Command::Entered(std::mem::take(
                         &mut state.input,
@@ -74,16 +78,19 @@ pub fn basic_center_input(
                 }
             }
             InputType::Visible => {
-                text_edit_frame(ui, |ui| {
+                let enter = text_edit_frame(ui, |ui| {
                     ui.add(
                         TextEdit::singleline(&mut state.input)
                             .text_color(Color32::from_rgb(198, 160, 246))
                             .desired_width(200.0)
                             .frame(false),
                     )
-                });
+                    .lost_focus()
+                })
+                .inner
+                    || fancy_button(ui, "submit").clicked();
 
-                if fancy_button(ui, "submit").clicked() {
+                if enter {
                     state.input_type = None;
                     handle.send_command(auth_thread::Command::Entered(std::mem::take(
                         &mut state.input,
