@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{Context, Result};
 use clap::Parser;
 use once_cell::sync::OnceCell;
 use serde::{Deserialize, Serialize};
@@ -33,12 +33,15 @@ impl Settings {
         let config_file_fn = || -> Result<Settings> {
             let config = match &args.config {
                 Some(config) => config.clone(),
-                None => "/etc/greetd/egui-greeter.json".into(),
+                None => PathBuf::from("/etc/greetd/egui-greeter.json"),
             };
 
-            let settings = fs::read_to_string(config)?;
+            let settings = fs::read_to_string(&config).with_context(|| {
+                format!("failed to read config file at {}", config.to_str().unwrap())
+            })?;
 
-            let settings: Settings = serde_json::from_str(&settings)?;
+            let settings: Settings =
+                serde_json::from_str(&settings).with_context(|| "failed to deserialize config")?;
 
             Ok(settings)
         };
