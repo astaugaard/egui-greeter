@@ -33,7 +33,7 @@ impl Settings {
         let config_file_fn = || -> Result<Settings> {
             let config = match &args.config {
                 Some(config) => config.clone(),
-                None => "/etc/greetd/displayManagerSettings.json".into(),
+                None => "/etc/greetd/egui-greeter.json".into(),
             };
 
             let settings = fs::read_to_string(config)?;
