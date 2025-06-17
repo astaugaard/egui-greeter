@@ -69,7 +69,7 @@ pub fn basic_center_input(
                 })
                 .inner;
 
-                ui.add_space(7.0);
+                ui.add_space(5.0);
 
                 enter |= fancy_button(ui, "submit").clicked();
 
@@ -92,7 +92,7 @@ pub fn basic_center_input(
                 })
                 .inner;
 
-                ui.add_space(7.0);
+                ui.add_space(5.0);
 
                 enter |= fancy_button(ui, "submit").clicked();
 

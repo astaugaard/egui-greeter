@@ -42,7 +42,7 @@ pub fn time_area(ui: &mut Ui) {
     ));
 
     ui.add(Label::new(
-        RichText::new(format!("{hour}:{minute}"))
+        RichText::new(format!("{hour}:{:0>2}", minute))
             .color(Color32::from_rgb(139, 213, 202))
             .size(144.0),
     ));
