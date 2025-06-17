@@ -57,7 +57,7 @@ pub fn basic_center_input(
                 }
             }
             InputType::Password => {
-                let enter = text_edit_frame(ui, |ui| {
+                let mut enter = text_edit_frame(ui, |ui| {
                     ui.add(
                         TextEdit::singleline(&mut state.input)
                             .password(true)
@@ -67,8 +67,11 @@ pub fn basic_center_input(
                     )
                     .lost_focus()
                 })
-                .inner
-                    || fancy_button(ui, "submit").clicked();
+                .inner;
+
+                ui.add_space(7.0);
+
+                enter |= fancy_button(ui, "submit").clicked();
 
                 if enter {
                     state.input_type = None;
@@ -78,7 +81,7 @@ pub fn basic_center_input(
                 }
             }
             InputType::Visible => {
-                let enter = text_edit_frame(ui, |ui| {
+                let mut enter = text_edit_frame(ui, |ui| {
                     ui.add(
                         TextEdit::singleline(&mut state.input)
                             .text_color(Color32::from_rgb(198, 160, 246))
@@ -87,8 +90,11 @@ pub fn basic_center_input(
                     )
                     .lost_focus()
                 })
-                .inner
-                    || fancy_button(ui, "submit").clicked();
+                .inner;
+
+                ui.add_space(7.0);
+
+                enter |= fancy_button(ui, "submit").clicked();
 
                 if enter {
                     state.input_type = None;
