@@ -107,9 +107,9 @@
               environment.etc = {
                 "greetd/egui-greeter.json".source = pkgs.writeText "config.json" (
                   lib.generators.toJSON { } {
-                    default_session_name = config.mysystem.egui-greeter.default_session_name;
-                    default_session_command = config.mysystem.egui-greeter.default_session_command;
-                    user = config.mysystem.egui-greeter.user;
+                    default_session_name = config.programs.egui-greeter.default_session_name;
+                    default_session_command = config.programs.egui-greeter.default_session_command;
+                    user = config.programs.egui-greeter.user;
                   }
                 );
               };
