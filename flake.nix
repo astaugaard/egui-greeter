@@ -120,7 +120,7 @@
                 enable = true;
                 settings = {
                   default_session = {
-                    command = "${pkgs.cage}/bin/cage -s -- ${eugi-greeter}/bin/egui-greeter";
+                    command = "${pkgs.cage}/bin/cage -s -- ${egui-greeter}/bin/egui-greeter";
                     user = "greeter";
                   };
                 };
