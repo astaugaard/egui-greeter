@@ -24,3 +24,6 @@ thats it!!!
 ## screenshot
 ![image](https://github.com/user-attachments/assets/d3706938-7967-416f-8031-e6277eb2ddab)
 there isn't currently any configuration of how it looks since I made it for myself, and my own use for fun. Though if you want the feature to be able to configure something let me know (I'm happy to help).
+
+## TODO
+* add nixos module to this repo so nixos users can use easily. (why nixos specifically, well I use nixos)
