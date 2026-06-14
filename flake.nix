@@ -41,13 +41,13 @@
           src = ./.;
 
           buildInputs = with pkgs; [
-            xorg.libX11
-            xorg.libXcursor
-            xorg.libXrandr
+            libX11
+            libXcursor
+            libXrandr
             libGL
             libxkbcommon
-            xorg.libXi
-            xorg.libxcb
+            libXi
+            libxcb
             libxkbcommon
             vulkan-loader
             wayland
