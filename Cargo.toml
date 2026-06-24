@@ -9,7 +9,7 @@ catppuccin-egui = {version = "5.5.0", default-features = false, features = ["egu
 chrono = "0.4.41"
 clap = { version = "4.5.40", features = ["derive"] }
 clap_derive = "4.5.40"
-eframe = "0.31.1"
+eframe = "0.32.3"
 egui = "0.31.1"
 egui-toast = "0.17.0"
 env_logger = "0.11.8"
